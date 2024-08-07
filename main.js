@@ -17,7 +17,7 @@ let events = {
     },
     touch: {
         down: "touchstart",
-        mobe: "touchmove",
+        move: "touchmove",
         up: "touchend",
     },
 };
@@ -75,11 +75,9 @@ gridButton.addEventListener("click", () => {
             });
 
             div.appendChild(col);
-
         }
 
         container.appendChild(div);
-
     }
 });
 
@@ -120,3 +118,39 @@ window.onload = () => {
     gridHeight.value = 0;
     gridWidth.value = 0;
 };
+
+// Funcionalidad para compartir la imagen en el perfil
+document.querySelector('.comunidad a:last-child').addEventListener('click', (event) => {
+    event.preventDefault();
+    
+    // Crea un canvas para capturar la imagen
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Configura el tamaño del canvas
+    const cols = gridWidth.value;
+    const rows = gridHeight.value;
+    const colWidth = 20; // Ajusta este valor según el tamaño de las celdas
+    const rowHeight = 20; // Ajusta este valor según el tamaño de las celdas
+    canvas.width = cols * colWidth;
+    canvas.height = rows * rowHeight;
+
+    // Dibuja el grid en el canvas
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            const colId = `gridCol${(i * cols + j + 1) * 2}`; // Generar el ID correspondiente
+            const col = document.getElementById(colId);
+            ctx.fillStyle = col.style.backgroundColor || 'transparent';
+            ctx.fillRect(j * colWidth, i * rowHeight, colWidth, rowHeight);
+        }
+    }
+
+    // Crea la imagen a partir del canvas
+    const imgElement = document.createElement('img');
+    imgElement.src = canvas.toDataURL();
+    imgElement.alt = 'Art shared from the grid';
+    imgElement.classList.add('shared-image'); // Añade una clase para estilos
+
+    // Agrega la imagen al perfil
+    document.querySelector('.perfil-images').appendChild(imgElement);
+});

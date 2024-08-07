@@ -46,8 +46,11 @@ main {
     transform: scale(1.1);
 }
 
-.publicaciones p {
-    width: 150px;
+.biografia {
+    width: 100%;
+    max-width: 800px;
+    text-align: start;
+    margin: 10px;
 }
 
 span {
