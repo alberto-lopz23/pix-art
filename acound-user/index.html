@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>acound</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h2>name user</h2>
+
+        <div class="folowers-likes">
+            <p>likes <span>0</span></p>
+        </div>
+        <p>esta va a ser la biografia del usuario para que pueda describir lo que hace y que quiere hacer
+            en la pagina web de pix-art.
+        </p>
+
+        <section class="publicaciones">
+            <div>
+                <!-- Aquí van las imágenes de las publicaciones -->
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(0)">
+                <img src="/acound-user/no idea.png" alt="" onclick="openModal(1)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(2)">
+                <img src="/acound-user/no idea.png" alt="" onclick="openModal(3)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(4)">
+                <img src="/acound-user/no idea.png" alt="" onclick="openModal(5)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(6)">
+                <img src="/acound-user/no idea.png" alt="" onclick="openModal(7)">
+                <img src="/acound-user/no idea.png" alt="" onclick="openModal(8)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(9)">
+                <img src="/acound-user/no idea.png" alt="" onclick="openModal(10)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(11)">
+                <img src="/acound-user/no idea.png" alt="" onclick="openModal(12)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(13)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(14)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(15)">
+                <img src="/acound-user/usuario-cuenta.jpeg" alt="" onclick="openModal(16)">
+            </div>
+        </section>
+        
+        <div id="modal" class="modal" onclick="closeModal()">
+            <span class="prev" onclick="changeImage(-1)">❮</span>
+            <img class="modal-content" id="modalImage">
+            <span class="next" onclick="changeImage(1)">❯</span>
+        </div>
+        
+
+    </main>
+    <script src="/acound-user/index.js"></script>
+</body>
+</html>
