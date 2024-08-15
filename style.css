@@ -100,3 +100,13 @@ input[type="color"]::-moz-color-swatch{
     border-radius: 5px;
     text-decoration: none;
 }
+
+#save-button {
+    font-size: 20px;
+    background-color: #43a047;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    cursor: pointer;
+}

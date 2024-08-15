@@ -8,6 +8,7 @@ let eraseBtn = document.getElementById("erase-btn");
 let paintBtn = document.getElementById("paint-btn");
 let widthValue = document.getElementById("width-value");
 let heightValue = document.getElementById("height-value");
+let saveButton = document.getElementById("save-button");
 
 let events = {
     mouse: {
@@ -107,11 +108,11 @@ paintBtn.addEventListener("click", () => {
 });
 
 gridWidth.addEventListener("input", () => {
-    widthValue.innerHTML = gridWidth.value < 9 ? `0${gridWidth.value}` : gridWidth.value;
+    widthValue.innerHTML = gridWidth.value < 10 ? `0${gridWidth.value}` : gridWidth.value;
 });
 
 gridHeight.addEventListener("input", () => {
-    heightValue.innerHTML = gridHeight.value < 9 ? `0${gridHeight.value}` : gridHeight.value;
+    heightValue.innerHTML = gridHeight.value < 10 ? `0${gridHeight.value}` : gridHeight.value;
 });
 
 window.onload = () => {
@@ -120,13 +121,12 @@ window.onload = () => {
 };
 
 // Funcionalidad para compartir la imagen en el perfil
-document.querySelector('.comunidad a:last-child').addEventListener('click', (event) => {
-    event.preventDefault();
-    
+document.querySelector('.comunidad a:last-child').addEventListener('click', () => {
+
     // Crea un canvas para capturar la imagen
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    
+
     // Configura el tamaño del canvas
     const cols = gridWidth.value;
     const rows = gridHeight.value;
@@ -153,4 +153,34 @@ document.querySelector('.comunidad a:last-child').addEventListener('click', (eve
 
     // Agrega la imagen al perfil
     document.querySelector('.perfil-images').appendChild(imgElement);
+});
+
+saveButton.addEventListener('click', () => {
+    // Crea un canvas para capturar la imagen
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Configura el tamaño del canvas
+    const cols = gridWidth.value;
+    const rows = gridHeight.value;
+    const colWidth = 20; // Ajusta este valor según el tamaño de las celdas
+    const rowHeight = 20; // Ajusta este valor según el tamaño de las celdas
+    canvas.width = cols * colWidth;
+    canvas.height = rows * rowHeight;
+
+    // Dibuja el grid en el canvas
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            const colId = `gridCol${(i * cols + j + 1) * 2}`; // Generar el ID correspondiente
+            const col = document.getElementById(colId);
+            ctx.fillStyle = col.style.backgroundColor || 'transparent';
+            ctx.fillRect(j * colWidth, i * rowHeight, colWidth, rowHeight);
+        }
+    }
+
+    // Crea un enlace para descargar la imagen
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL();
+    link.download = 'grid-image.png';
+    link.click();
 });
